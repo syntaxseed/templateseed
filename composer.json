@@ -1,0 +1,24 @@
+{
+    "name": "syntaxseed/templateseed",
+    "description": "Lightweight and simple templating class for PHP. Caching, and natural PHP template syntax.",
+    "keywords": ["template", "composer", "package", "view", "templating"],
+    "license": "GPLV3",
+    "authors": [
+        {
+            "name": "Sherri Wheeler",
+            "email": "sherriDOTwheelerATgmailDOTcom"
+        }
+    ],
+    "type": "library",
+    "require": {
+		"php": ">=5.6"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "5.2.*"
+    },
+	"autoload": {
+        "psr-4": {
+            "syntaxseed\\templateseed\\": "src/"
+        }
+    }
+}
