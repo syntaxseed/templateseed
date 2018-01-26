@@ -77,8 +77,21 @@ Manually set the cached copy file name (defaults to md5 of template name):
 $tpl->setCacheKey('hellocached');
 ```
 
+Template Syntax
+--------
+
+A new syntax is not required for TemplateSeed. All parameters - scalar values, arrays, objects, etc - are passed to the template as named with a **tpl_** prefix.
+
+title.tpl.php passed a 'name' string parameter:
+```
+<h1>Welcome, <?=$tpl_name;?>!</h1>
+```
+
+All standard PHP works within the template. Loops, conditionals, etc. Don't forget to escape output when applicable!
+
 
 Changelog
 --------
 
+* v1.0.1 - v1.0.3 - Minor adjustments and documentation tweaks.
 * v1.0.0 - Initial release. Under development.
