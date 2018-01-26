@@ -4,10 +4,10 @@ namespace Syntaxseed\Templateseed;
 /**
   * AvTemplate - PHP Templating class.
   * @author Sherri Wheeler
-  * @version  1.00
-  * @copyright Copyright (c) 2009-2018, Sherri Wheeler - Avinus - syntaxseed.com
+  * @version  1.0.0
+  * @copyright Copyright (c) 2009-2018, Sherri Wheeler - syntaxseed.com
   * Usage:
-  *   require("avtemplate.class.php");
+  *   require("TemplateSeed.php");
   *   $tpl = new Template('/path/to/templates/');
   *   $tpl->setTemplate('header');
   *   $tpl->params->debug = $debug;
@@ -87,7 +87,7 @@ class TemplateSeed{
         }
 
         $gotCached = false;    
-        // Should we used a cached version?
+        // Should we use a cached version?
         if($this->cache && $this->cacheExists()){
             $this->templateOutput = $this->getCache();
             if($this->templateOutput !== false){
@@ -120,20 +120,34 @@ class TemplateSeed{
   
     // ******** Caching Methods ***************
   
-    public function enableCaching($ttl = 3600, $key = null){
+    /* Requires cache path to be previously set! */
+    public function enableCaching(){
         $this->cache = true;
-        if(!is_null($key)){
+    }
+
+    /* Manually set a name for the cached file. */
+    public function setCacheKey($key){
+        $key = preg_replace('/[^\da-z]/i', '', $key);
+        if( !empty($key) ){
             $this->cacheKey = $key;
         }
-        $this->cachePeriod = $ttl;
     }
-   
+
+    public function setCacheExpiry($ttl = 3600){
+        $this->cachePeriod = abs(intval($ttl));
+    }
+
     public function disableCaching(){
         $this->cache = false;   
     }
    
-    public function setCachePath($path){
-        $this->cachePath = $path;
+    public function setCachePath($path=''){
+        if( empty($path) ){
+            $this->cachePath = $this->templatesPath.'cache/';
+        }else{
+            $this->cachePath = $path;
+        }
+        
         if( !is_writeable($this->cachePath) ){
             $this->error("Cache Path ({$this->cachePath}) not writeable.");
         } 
@@ -145,7 +159,7 @@ class TemplateSeed{
         if(file_exists($cacheFile) && filemtime($cacheFile) > (time()-$this->cachePeriod) ){
             return(true);
         }else{
-            return(true);
+            return(false);
         }
     }
    
@@ -161,9 +175,10 @@ class TemplateSeed{
     /* Get the name of the file this template should be cached to. Using the supplied key, or the md5 of the template name. */
     private function getCacheFile(){
         if(is_null($this->cachePath) || !file_exists($this->cachePath)){
-            $this->error('Invalid Cache Path. '.$this->cachePath);   
+            $this->error('Invalid Cache Path. '.$this->cachePath);
+            return false;   
         }
         $cacheKey = is_null($this->cacheKey) ? md5($this->templateFile) : $this->cacheKey;
-        return($this->cachePath . '/' . $cacheKey);
+        return($this->cachePath . $cacheKey);
     }
 }
