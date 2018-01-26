@@ -2,10 +2,11 @@
     "name": "syntaxseed/templateseed",
     "description": "Lightweight and simple templating class for PHP. Caching, and natural PHP template syntax.",
     "keywords": ["template", "composer", "package", "view", "templating"],
-    "license": "GPL-3.0-only",
+    "license": "GPLV3",
     "authors": [
         {
-            "name": "Sherri Wheeler"
+            "name": "Sherri Wheeler",
+            "email": "sherriDOTwheelerATgmailDOTcom"
         }
     ],
     "type": "library",
