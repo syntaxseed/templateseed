@@ -1,0 +1,1 @@
+<h1>Well hello there, <?=$tpl_name;?>!</h1>

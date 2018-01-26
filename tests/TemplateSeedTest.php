@@ -1,33 +1,27 @@
 <?php 
-
 /**
-*  Corresponding Class to test YourClass class
-*
-*  For each class in your library, there should be a corresponding Unit-Test for it
-*  Unit-Tests should be as much as possible independent from other test going on.
-*
-*  @author yourname
+*  Basic testing for TemplateSeed.
 */
 class TemplateSeedTest extends PHPUnit_Framework_TestCase{
 	
     /**
-    * Just check if the class has no syntax errors
+    * Basic test of class instantiation.
     */
     public function testIsThereAnySyntaxErrors(){
-    	$var = new syntaxseed\templateseed\YourClass;
-    	$this->assertTrue(is_object($var));
-    	unset($var);
+    	$tpl = new syntaxseed\templateseed\TemplateSeed(__DIR__."/views/");
+    	$this->assertTrue(is_object($tpl));
+    	unset($tpl);
     }
   
     /**
-    * Check if a method works.
-    *
-    * /
-
-    public function testMethod1(){
-    $var = new Buonzz\Template\YourClass;
-    	$this->assertTrue($var->method1("hey") == 'Hello World');
-    	unset($var);
-    }
+    * Check if retrieving a template works.
     */
+    public function testTemplateRetrieval(){
+        $tpl = new syntaxseed\templateseed\TemplateSeed(__DIR__."/views/");
+        $tpl->setTemplate('greeting');
+        $tpl->params->name = "Keegan";
+        $output = $tpl->retrieve();
+    	$this->assertTrue($output == '<h1>Well hello there, Keegan!</h1>');
+        unset($tpl);
+    }
 }

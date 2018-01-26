@@ -1,9 +1,11 @@
 TemplateSeed
 =========================
 
-A simple PHP templating class with caching and natural PHP template syntax.
+A lightweight PHP templating class with caching and natural PHP template syntax.
 
-Licence: GPLv3.
+Licence: MIT.
+
+Author: Sherri Wheeler sherri.syntaxseed@ofitall.com
 
 Features
 --------
@@ -93,5 +95,6 @@ All standard PHP works within the template. Loops, conditionals, etc. Don't forg
 Changelog
 --------
 
+* v1.0.4 - Add PHPUnit tests. Change license to MIT. Fix author info.
 * v1.0.1 - v1.0.3 - Minor adjustments and documentation tweaks.
 * v1.0.0 - Initial release. Under development.
