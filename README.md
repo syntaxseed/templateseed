@@ -24,9 +24,7 @@ First ensure you have a directory for your templates. Save them with the **.tpl.
 
 Require with Composer:
 ```
-"require": {
-        "syntaxseed/templateseed": "^1.0"
-}
+./composer.phar require syntaxseed/templateseed ~1.0
 ```
 
 Import the namespace into your application:
