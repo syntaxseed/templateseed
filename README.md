@@ -19,7 +19,7 @@ Features
 * Simple output caching.
 * Easy to customize.
 
-Usage - Basic
+Usage - Quick Start
 --------
 
 First ensure you have a directory for your templates. Save them with the **.tpl.php** extension. They can be sorted in to subdirectories.
