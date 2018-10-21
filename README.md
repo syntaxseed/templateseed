@@ -5,7 +5,7 @@ A lightweight PHP templating class with caching and natural PHP template syntax.
 
 Licence: MIT.
 
-Author: Sherri Wheeler sherri.syntaxseed@ofitall.com
+Author: Sherri Wheeler sherri.syntaxseed[at]ofitall[dot]com
 
 Features
 --------
@@ -26,20 +26,29 @@ First ensure you have a directory for your templates. Save them with the **.tpl.
 
 Require with Composer:
 ```
-./composer.phar require syntaxseed/templateseed ~1.0
+./composer.phar require syntaxseed/templateseed ~1.1
 ```
 
 Import the namespace into your application:
 ```
-use syntaxseed\templateseed\TemplateSeed;
+use Syntaxseed\Templateseed\TemplateSeed;
 ```
 
-Basic usage:
+Initialize the class with a path to the template files:
 ```
 $tpl = new TemplateSeed(__DIR__.'/src/templates/');
+```
+
+Basic one-line usage (ex returned from a controller or route):
+```
+return $tpl->render('header', ['title' => 'Home']);
+```
+
+Step-By-Step usage:
+```
 $tpl->setTemplate('header');
 $tpl->params->title = "My Blog";
-$tpl->render();
+return $tpl->retrieve();
 ```
 
 Use a template in a subdirectory of the templates path:
@@ -47,9 +56,9 @@ Use a template in a subdirectory of the templates path:
 $tpl->setTemplate('theme/header');
 ```
 
-Return the template results instead of just echoing it, instead of render() use:
+Echo the results instead of just returning it, use:
 ```
-$page = $tpl->retrieve();
+$page = $tpl->output();
 ```
 
 Usage - Caching
@@ -64,12 +73,12 @@ $tpl->setTemplate('header');
 if( ! $tpl->cacheExists() ){
 	$tpl->params->title = "My Blog"; 	// Query the DB for this value or other time consuming steps.
 }
-$tpl->render();
+$tpl->output();
 ```
 
 Enable caching later:
 ```
-$tpl->enableCaching();      
+$tpl->enableCaching();
 $tpl->setCacheExpiry(60);     // 1 minute TTL for cached copies.
 $tpl->setCachePath();         // Defaults to <template path>/cached or pass in a path.
 ```
