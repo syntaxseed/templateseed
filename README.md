@@ -15,6 +15,7 @@ Features
 * Simple to learn and use.
 * Template markup language is standard PHP.
 * Pass any number of parameters to a template.
+* Set global parameters for all templates.
 * Small code footprint: integrates easily into your project.
 * Simple output caching.
 * Easy to customize.
@@ -61,6 +62,21 @@ Echo the results instead of just returning it, use:
 $page = $tpl->output();
 ```
 
+Usage - Global parameters
+--------
+
+Parameters common to all instances of the template class and thus to all rendered templates can be set.
+Beware, per-template params will over-write global params.
+
+On the instance:
+```
+$tpl->setGlobalParams(['baseurl'=>'/']);
+```
+Or on the class:
+```
+TemplateSeed::globalParams(['baseurl'=>'/']);
+```
+
 Usage - Caching
 --------
 
@@ -100,10 +116,63 @@ If title.tpl.php was passed a 'name' parameter:
 
 All standard PHP works within the template. Loops, conditionals, etc. Don't forget to escape output when applicable!
 
+### Template Helpers
+
+A small set of helper functions and variables are also available from within your templates. These are defined simply for convenience and are accessible within a template.
+
+#### $tpl
+
+The $tpl variable is available within the templates and it contains the calling TemplateSeed object.
+
+#### $_ss(string $str);
+
+The $_ss() function is a short alias to the built in htmlspecialchars function, to output 'safe strings'.
+
+#### $_view(string $tplName, array $params = []);
+
+Use the $_view() helper function to include a template from within another template.
+Pass it the name of a template file, along with (optional) its own set of parameters.
+
+### Master Pages
+
+Define a master template:
+
+masterpage.tpl.php:
+```
+<html>
+<head><title><?=$title;?></title></head>
+<body>
+    <?php
+    $_view($page, $data);
+    ?>
+</body>
+</html>
+```
+
+Define your inner template:
+
+pages/about.tpl.php
+```
+<p>This is about <?=$company;?>.</p>
+```
+
+Calling from inside your controller:
+```
+return $tpl->render(
+        'masterpage',
+        [
+            'page'=>'pages/about',
+            'title'=>'About Me',
+            'data'=>['company'=>'Acme Co.']
+        ]
+    );
+
 
 Changelog
 --------
 
+* v1.1.4 - Add global parameters. Clean up code and comments.
+* v1.1.3 - Add template helpers.
 * v1.1.2 - Add one-line render function to match common frameworks.
 * v1.0.4 - Add PHPUnit tests. Change license to MIT. Fix author info.
 * v1.0.1 - v1.0.3 - Minor adjustments and documentation tweaks.
