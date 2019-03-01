@@ -6,7 +6,7 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.1.4
+  * @version  1.1.5
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
@@ -212,25 +212,26 @@ class TemplateSeed
      */
     private function protectedInclude()
     {
-        $tpl = $this;
+        $_tpl = $this;
 
         // View Helpers:
-        // Include another view into the current view:
-        $_view = function ($tplName, $params = []) use ($tpl) {
-            $tplCopy = clone $tpl; // Don't want to mess with the calling template's settings.
+        // * Include another view into the current view:
+        $_view = function ($tplName, $params = []) use ($_tpl) {
+            $tplCopy = clone $_tpl; // Don't want to mess with the calling template's settings.
             echo($tplCopy->render($tplName, $params));
             unset($tplCopy);
         };
-        // Encode html for a 'Safe String'.
+        // * Encode html for a 'Safe String'.
         $_ss = function ($str) {
             return htmlspecialchars($str, ENT_QUOTES);
         };
 
-        unset($tpl);
-
+        // Extract template parameters into this local namespace.
         $allParams = (object) array_merge((array)self::$staticParams, (array)$this->params);
-
         extract(get_object_vars($allParams));
+        unset($allParams);
+
+        // Included template has access to variables local to this function.
         include($this->templateFile);
     }
 

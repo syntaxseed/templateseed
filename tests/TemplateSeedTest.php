@@ -47,4 +47,37 @@ class TemplateSeedTest extends PHPUnit_Framework_TestCase{
     	$this->assertEquals($output, "<h1>Well hello there, Keegan!</h1>\n");
         unset($tpl);
     }
+
+    /**
+    * Check the Safe String helper.
+    */
+    public function testTemplateHelperSS(){
+        $tpl = new syntaxseed\templateseed\TemplateSeed(__DIR__."/views/");
+        $output = $tpl->render('helpers');
+        $this->assertContains('Helpers:', $output);
+        $this->assertContains('&amp;', $output);
+        unset($tpl);
+    }
+
+    /**
+    * Check the View helper.
+    */
+    public function testTemplateHelperView(){
+        $tpl = new syntaxseed\templateseed\TemplateSeed(__DIR__."/views/");
+        $output = $tpl->render('helpers');
+        $this->assertContains('Helpers:', $output);
+        $this->assertContains('Freeman', $output);
+        unset($tpl);
+    }
+
+    /**
+    * Check the $_tpl helper var is included.
+    */
+    public function testTemplateHelperTpl(){
+        $tpl = new syntaxseed\templateseed\TemplateSeed(__DIR__."/views/");
+        $output = $tpl->render('helpers');
+        $this->assertContains('Helpers:', $output);
+        $this->assertContains('Syntaxseed\Templateseed\TemplateSeed', $output);
+        unset($tpl);
+    }
 }

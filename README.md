@@ -1,7 +1,7 @@
 TemplateSeed
 =========================
 
-A lightweight PHP templating class with caching and natural PHP template syntax.
+A lightweight, simple PHP templating class with caching and natural PHP template syntax.
 
 Licence: MIT.
 
@@ -23,7 +23,7 @@ Features
 Usage - Quick Start
 --------
 
-First ensure you have a directory for your templates. Save them with the **.tpl.php** extension. They can be sorted in to subdirectories.
+First ensure you have a directory for your templates. Save them with the **.tpl.php** extension. They can be sorted into subdirectories.
 
 Require with Composer:
 ```
@@ -45,7 +45,7 @@ Basic one-line usage (ex returned from a controller or route):
 return $tpl->render('header', ['title' => 'Home']);
 ```
 
-Step-By-Step usage:
+Or, Step-By-Step usage:
 ```
 $tpl->setTemplate('header');
 $tpl->params->title = "My Blog";
@@ -66,13 +66,13 @@ Usage - Global parameters
 --------
 
 Parameters common to all instances of the template class and thus to all rendered templates can be set.
-Beware, per-template params will over-write global params.
+Beware, per-template params will over-write global params. There are two methods of defining them depending on whether you've instantiated an instance of the class yet or not:
 
 On the instance:
 ```
 $tpl->setGlobalParams(['baseurl'=>'/']);
 ```
-Or on the class:
+Or, on the class:
 ```
 TemplateSeed::globalParams(['baseurl'=>'/']);
 ```
@@ -80,9 +80,9 @@ TemplateSeed::globalParams(['baseurl'=>'/']);
 Usage - Caching
 --------
 
-The default location for cached version is a cache/ directory within the templates directory. The cache directory must already exist.
+The default location for cached versions is a cache/ directory within the templates directory. The cache directory must already exist and be writeable.
 
-Caching enabled from the start:
+Caching enabled from the start (notice the true parameter to the constructor):
 ```
 $tpl = new TemplateSeed(__DIR__.'/src/templates/', true);
 $tpl->setTemplate('header');
@@ -101,7 +101,7 @@ $tpl->setCachePath();         // Defaults to <template path>/cache or pass in a 
 
 Manually set the cached copy file name (defaults to md5 of template name):
 ```
-$tpl->setCacheKey('hellocached');
+$tpl->setCacheKey('headercached');
 ```
 
 Template Syntax
@@ -114,15 +114,15 @@ If title.tpl.php was passed a 'name' parameter:
 <h1>Welcome, <?=name;?>!</h1>
 ```
 
-All standard PHP works within the template. Loops, conditionals, etc. Don't forget to escape output when applicable!
+All standard PHP works within the template. Loops, conditionals, etc. Don't forget to escape output when applicable (you can use the $_ss() 'safe string' helper function)!
 
 ### Template Helpers
 
-A small set of helper functions and variables are also available from within your templates. These are defined simply for convenience and are accessible within a template.
+A small set of helper functions and variables are also available from within your templates. These are defined simply for convenience, prefixed with an underscore, and are accessible within a template.
 
-#### $tpl
+#### $_tpl
 
-The $tpl variable is available within the templates and it contains the calling TemplateSeed object.
+The $_tpl variable is available within the templates and it contains the calling TemplateSeed object.
 
 #### $_ss(string $str);
 
@@ -153,7 +153,7 @@ Define your inner template:
 
 pages/about.tpl.php
 ```
-<p>This is about <?=$company;?>.</p>
+<p>This is all about <?=$company;?>.</p>
 ```
 
 Calling from inside your controller:
@@ -162,7 +162,7 @@ return $tpl->render(
         'masterpage',
         [
             'page'=>'pages/about',
-            'title'=>'About Me',
+            'title'=>'About Our Company',
             'data'=>['company'=>'Acme Co.']
         ]
     );
@@ -171,6 +171,7 @@ return $tpl->render(
 Changelog
 --------
 
+* v1.1.5 - Fix $_tpl helper var. Remove values from tpl scope. Fix readme.
 * v1.1.4 - Add global parameters. Clean up code and comments.
 * v1.1.3 - Add template helpers.
 * v1.1.2 - Add one-line render function to match common frameworks.
