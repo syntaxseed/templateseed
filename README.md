@@ -59,7 +59,7 @@ $tpl->setTemplate('theme/header');
 
 Echo the results instead of just returning it, use:
 ```
-$page = $tpl->output();
+$tpl->output();
 ```
 
 Usage - Global parameters
