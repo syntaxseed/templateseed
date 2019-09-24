@@ -6,7 +6,7 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.1.5
+  * @version  1.2.0
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
@@ -313,6 +313,7 @@ class TemplateSeed
     /**
      * Set the path to the cached template files.
      * Defaults to a cache/ subdirectory under the templates dir.
+     * Creates directory if doesn't exist.
      *
      * @param string $cachePath
      * @return void
@@ -325,8 +326,15 @@ class TemplateSeed
             } else {
                 $this->cachePath = $cachePath;
             }
-            if (!is_readable($this->cachePath) || !is_writeable($this->cachePath)) {
-                $this->error("Template Cache Path ({$this->cachePath}) does not exist or is not readable & writeable.");
+
+            if (!file_exists($this->cachePath)) {
+                if (!@mkdir($this->cachePath, 0775)) {
+                    $this->error("Attempt to create template cache path ({$this->cachePath}) failed.");
+                }
+            }
+
+            if (!is_readable($this->cachePath) || !is_writeable($this->cachePath) || !is_dir($this->cachePath)) {
+                $this->error("Template cache path ({$this->cachePath}) does not exist or is not accessible & writeable.");
             }
         } else {
             $this->cachePath = null;

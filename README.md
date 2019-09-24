@@ -27,7 +27,7 @@ First ensure you have a directory for your templates. Save them with the **.tpl.
 
 Require with Composer:
 ```
-./composer.phar require syntaxseed/templateseed ^1.1
+./composer.phar require syntaxseed/templateseed ^1.2
 ```
 
 Import the namespace into your application:
@@ -80,7 +80,7 @@ TemplateSeed::globalParams(['baseurl'=>'/']);
 Usage - Caching
 --------
 
-The default location for cached versions is a cache/ directory within the templates directory. The cache directory must already exist and be writeable.
+The default location for cached versions is a cache/ directory within the templates directory. The cache directory must be writeable. Will attempt to create it if it doesn't already exist.
 
 Caching enabled from the start (notice the true parameter to the constructor):
 ```
@@ -171,6 +171,7 @@ return $tpl->render(
 Changelog
 --------
 
+* v1.2.0 - Attempt to create template cache directory if doesn't exist.
 * v1.1.5 - Fix $_tpl helper var. Remove values from tpl scope. Fix readme.
 * v1.1.4 - Add global parameters. Clean up code and comments.
 * v1.1.3 - Add template helpers.
