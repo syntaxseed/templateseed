@@ -15,7 +15,7 @@ A lightweight, simple PHP templating class with caching and natural PHP template
 
 Licence: MIT.
 
-Author: Sherri Wheeler sherri.syntaxseed[at]ofitall[dot]com
+Author: Sherri Wheeler (Twitter [@SyntaxSeed](https://twitter.com/SyntaxSeed)) https://syntaxseed.com
 
 Features
 --------
@@ -33,4 +33,5 @@ Features
 
 Get Started & Documentation
 --------
+
 **[Jump Into The TemplateSeed Docs!](https://syntaxseed.github.io/templateseed/)**
