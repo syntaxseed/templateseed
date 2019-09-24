@@ -173,6 +173,16 @@ return $tpl->render(
 
 **TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true after the params array.
 
+Framework Helpers
+--------
+
+A few helpful snippets are provided for specific PHP frameworks. These can be found in the `docs/framework-helpers/` directory of this package.
+
+- Symfony
+  - Console commands.
+    - Clear cache dir.
+    - View cache path.
+  - Service config to auto-wire TemplateSeed.
 
 Changelog
 --------
