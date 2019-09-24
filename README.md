@@ -11,14 +11,15 @@ Features
 --------
 
 * PSR-4 autoloading compliant structure.
-* Unit-Testing with PHPUnit.
 * Simple to learn and use.
 * Template markup language is standard PHP.
 * Pass any number of parameters to a template.
 * Set global parameters for all templates.
 * Small code footprint: integrates easily into your project.
 * Simple output caching.
+* Supports masterpages (sub-templates).
 * Easy to customize.
+* Unit-Testing with PHPUnit.
 
 Usage - Quick Start
 --------
@@ -99,7 +100,7 @@ $tpl->setCacheExpiry(60);     // 1 minute TTL for cached copies.
 $tpl->setCachePath();         // Defaults to <template path>/cache or pass in a path.
 ```
 
-Manually set the cached copy file name (defaults to md5 of template name and data params keys):
+Manually set the cached copy file name (defaults to md5 of template name):
 ```
 $tpl->setCacheKey('headercached');
 ```
