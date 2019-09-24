@@ -99,10 +99,13 @@ $tpl->setCacheExpiry(60);     // 1 minute TTL for cached copies.
 $tpl->setCachePath();         // Defaults to <template path>/cache or pass in a path.
 ```
 
-Manually set the cached copy file name (defaults to md5 of template name):
+Manually set the cached copy file name (defaults to md5 of template name and data params keys):
 ```
 $tpl->setCacheKey('headercached');
 ```
+
+**TIP:** Template parameters are ignored when using a cached version. If using masterpages or templates within templates, you can disable caching for the outer template by passing true to the output(), retrieve(), or render() methods.
+
 
 Template Syntax
 --------
@@ -164,13 +167,17 @@ return $tpl->render(
             'page'=>'pages/about',
             'title'=>'About Our Company',
             'data'=>['company'=>'Acme Co.']
-        ]
+        ], true // Prevent cache of masterpage.
     );
+```
+
+**TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true after the params array.
 
 
 Changelog
 --------
 
+* v1.2.1 - Per-template over-ride to prevent caching. Required for masterpages.
 * v1.2.0 - Attempt to create template cache directory if doesn't exist.
 * v1.1.5 - Fix $_tpl helper var. Remove values from tpl scope. Fix readme.
 * v1.1.4 - Add global parameters. Clean up code and comments.

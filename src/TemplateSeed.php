@@ -10,19 +10,6 @@ namespace Syntaxseed\Templateseed;
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
-  * Usage:
-  *   require("TemplateSeed.php");
-  *   $tpl = new Template('/path/to/templates/');
-  *
-  *   // One-line Method (return from your controller or route):
-  *   return $tpl->render('index', ['debug' => $debug, 'title' => 'Home']);
-
-  *   // ...or Long Method:
-  *   $tpl->setTemplate('header');
-  *   $tpl->params->debug = $debug;
-  *   $tpl->params->title = "Home";
-  *   $tpl->output();
-  *
   * You might want a cron to clear out the cache directory periodically if you use caching.
   */
 
@@ -37,7 +24,7 @@ class TemplateSeed
     private $cachePath = null;            // Path to the cached files.
     private $templateFile = null;         // Full path and file name of the template file.
     private $templatesPath = '';          // Path to the templates directory.
-    private $templateOutput ='';          // The generated (or cached) template output.
+    private $templateOutput = '';          // The generated (or cached) template output.
 
     /**
     * Initialize the template object.
@@ -99,11 +86,11 @@ class TemplateSeed
      * @param array $params
      * @return string
      */
-    public function render($tpl, $params = [])
+    public function render($tpl, $params = [], $preventCache = false)
     {
         $this->setTemplate($tpl);
         $this->params = (object) $params;
-        return $this->retrieve();
+        return $this->retrieve($preventCache);
     }
 
     /**
@@ -151,9 +138,9 @@ class TemplateSeed
      *
      * @return void
      */
-    public function output()
+    public function output($preventCache = false)
     {
-        $this->generateOutput();
+        $this->generateOutput($preventCache);
         echo($this->templateOutput);
     }
 
@@ -162,9 +149,9 @@ class TemplateSeed
      *
      * @return string
      */
-    public function retrieve()
+    public function retrieve($preventCache = false)
     {
-        $this->generateOutput();
+        $this->generateOutput($preventCache);
         return($this->templateOutput);
     }
 
@@ -175,13 +162,13 @@ class TemplateSeed
      *
      * @return void
      */
-    private function generateOutput()
+    private function generateOutput($preventCache = false)
     {
         if (!file_exists($this->templateFile)) {
             $this->error("Template File ({$this->templateFile}) not found.");
         }
 
-        if (!$this->useCache()) {
+        if (!$this->useCache() || $preventCache) {
             try {
                 ob_start();
                 $this->protectedInclude();
@@ -195,7 +182,9 @@ class TemplateSeed
             }
 
             // (Re)cache this template if applicable.
-            $this->setCache();
+            if (!$preventCache) {
+                $this->setCache();
+            }
         }
     }
 
@@ -216,9 +205,9 @@ class TemplateSeed
 
         // View Helpers:
         // * Include another view into the current view:
-        $_view = function ($tplName, $params = []) use ($_tpl) {
+        $_view = function ($tplName, $params = [], $preventCache = false) use ($_tpl) {
             $tplCopy = clone $_tpl; // Don't want to mess with the calling template's settings.
-            echo($tplCopy->render($tplName, $params));
+            echo($tplCopy->render($tplName, $params, $preventCache));
             unset($tplCopy);
         };
         // * Encode html for a 'Safe String'.
@@ -395,6 +384,7 @@ class TemplateSeed
             $this->error('Invalid Cache Path. '.$this->cachePath);
             return false;
         }
+
         $cacheKey = is_null($this->cacheKey) ? md5($this->templateFile) : $this->cacheKey;
         return($this->cachePath . $cacheKey);
     }
