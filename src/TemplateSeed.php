@@ -6,7 +6,7 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.2.1
+  * @version  1.2.2
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
@@ -297,6 +297,16 @@ class TemplateSeed
     public function setCacheExpiry($ttl = 3600)
     {
         $this->cachePeriod = abs(intval($ttl));
+    }
+
+    /**
+     * Get the path to the cached template files.
+     *
+     * @return string
+     */
+    public function getCachePath()
+    {
+        return $this->cachePath;
     }
 
     /**

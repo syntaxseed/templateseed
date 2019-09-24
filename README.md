@@ -177,6 +177,7 @@ return $tpl->render(
 Changelog
 --------
 
+* v1.2.2 - Add Symfony console commands helpers. Add getCachePath() method.
 * v1.2.1 - Per-template over-ride to prevent caching. Required for masterpages.
 * v1.2.0 - Attempt to create template cache directory if doesn't exist.
 * v1.1.5 - Fix $_tpl helper var. Remove values from tpl scope. Fix readme.
