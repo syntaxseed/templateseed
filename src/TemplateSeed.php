@@ -6,7 +6,7 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.2.2
+  * @version  1.2.3
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *

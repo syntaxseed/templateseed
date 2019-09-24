@@ -182,11 +182,12 @@ A few helpful snippets are provided for specific PHP frameworks. These can be fo
   - Console commands.
     - Clear cache dir.
     - View cache path.
-  - Service config to auto-wire TemplateSeed.
+  - Example service config to auto-wire TemplateSeed.
 
 Changelog
 --------
 
+* v1.2.3 - Add Symfony example to wire into Service container.
 * v1.2.2 - Add Symfony console commands helpers. Add getCachePath() method.
 * v1.2.1 - Per-template over-ride to prevent caching. Required for masterpages.
 * v1.2.0 - Attempt to create template cache directory if doesn't exist.
