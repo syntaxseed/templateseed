@@ -2,8 +2,10 @@
 
 First ensure you have a directory for your templates. Save them with the **.tpl.php** extension. They can be sorted into subdirectories.
 
+## Setup
+
 Require with Composer:
-```bash
+```cli
 ./composer.phar require syntaxseed/templateseed
 ```
 
@@ -17,10 +19,14 @@ Initialize the class with a path to the template files:
 $tpl = new TemplateSeed(__DIR__.'/src/templates/');
 ```
 
+## Use One-Liner
+
 Basic one-line usage (ex returned from a controller or route):
 ```php
 return $tpl->render('header', ['title' => 'Home']);
 ```
+
+## Detailed Usage
 
 Or, Step-By-Step usage:
 ```php

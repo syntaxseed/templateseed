@@ -1,14 +1,15 @@
-- TemplateSeed
+&nbsp;TemplateSeed
 
-  - [Overview](README.md)
-  - [Quick Start](quickstart.md)
-  - [Parameters](parameters.md)
-    - [Global Parameters](parameters-global.md)
-  - [Caching](caching.md)
-  - Templates
-   - [Syntax](template-syntax.md)
-   - [Helpers](template-helpers.md)
-   - [Masterpages](template-masterpages.md)
-  - [Framework Resources](framework-resources.md)
-  - [Contributing](contributing.md)
-  - [Changelog](changelog.md)
+- [Overview](README.md)
+- [Quick Start](quickstart.md)
+- Parameters:
+  - [Overview](parameters.md)
+  - [Global Parameters](parameters-global.md)
+- [Caching](caching.md)
+- Templates:
+  - [Syntax](template-syntax.md)
+  - [Helpers](template-helpers.md)
+  - [Masterpages](template-masterpages.md)
+- [Framework Resources](framework-resources.md)
+- [Contributing](contributing.md)
+- [Changelog](changelog.md)

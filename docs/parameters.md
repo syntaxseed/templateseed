@@ -20,7 +20,7 @@ $tpl->params->pagenum = 1;
 $tpl->output();
 ```
 
-## Accessing from within a template.
+## Use In Templates
 
 Parameters are available within the template as a variable. You can interact with them via standard PHP loops, if statements, etc.
 
