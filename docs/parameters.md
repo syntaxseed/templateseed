@@ -5,7 +5,7 @@ Parameters are how values are passed into your template. They can be set individ
 Parameters can be any valid PHP value, object, or array.
 
 As an array to the render method:
-```
+```php
 return $tpl->render('homepage', [
     'title' => 'Home',
     'pagenum' => 1
@@ -13,7 +13,7 @@ return $tpl->render('homepage', [
 ```
 
 Or, individually:
-```
+```php
 $tpl->setTemplate('homepage');
 $tpl->params->title = 'Home';
 $tpl->params->pagenum = 1;

@@ -5,7 +5,7 @@ Often we want to include templates into other (outer) templates. These outer tem
 Define a master template:
 
 masterpage.tpl.php:
-```
+```php
 <html>
 <head><title><?=$title;?></title></head>
 <body>
@@ -19,12 +19,12 @@ masterpage.tpl.php:
 Define your inner template:
 
 pages/about.tpl.php
-```
+```php
 <p>This is all about <?=$company;?>.</p>
 ```
 
 Calling from inside your controller:
-```
+```php
 return $tpl->render(
         'masterpage',
         [
@@ -35,4 +35,4 @@ return $tpl->render(
     );
 ```
 
-**TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true after the params array.
+> **TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true for `$preventCache` after the params array.

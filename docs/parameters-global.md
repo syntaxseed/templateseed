@@ -4,11 +4,11 @@ Parameters common to all instances of the template class and thus to all rendere
 Beware, per-template params will over-write global params. There are two methods of defining them depending on whether you've instantiated an instance of the class yet or not:
 
 On the instance:
-```
+```php
 $tpl->setGlobalParams(['baseurl'=>'/']);
 ```
 
 Or, on the class:
-```
+```php
 TemplateSeed::globalParams(['baseurl'=>'/']);
 ```

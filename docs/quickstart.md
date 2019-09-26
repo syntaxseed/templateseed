@@ -3,7 +3,7 @@
 First ensure you have a directory for your templates. Save them with the **.tpl.php** extension. They can be sorted into subdirectories.
 
 Require with Composer:
-```
+```bash
 ./composer.phar require syntaxseed/templateseed
 ```
 

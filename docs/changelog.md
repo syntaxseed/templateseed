@@ -2,6 +2,7 @@
 
 TemplateSeed uses tagged versions and SemVer version numbering. View the [releases on GitHub](https://github.com/syntaxseed/templateseed/releases).
 
+* v1.2.5 - Set template path in constructor even if cache toggle is off. (In case it is overriden later.) Improvements to docs.
 * v1.2.4 - Added full docs site.
 * v1.2.3 - Add Symfony example to wire into Service container.
 * v1.2.2 - Add Symfony console commands helpers. Add getCachePath() method.

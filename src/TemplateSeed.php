@@ -6,7 +6,7 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.2.3
+  * @version  1.2.5
   * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
@@ -319,7 +319,7 @@ class TemplateSeed
      */
     public function setCachePath($cachePath='')
     {
-        if ($this->cache) {
+        if ($this->cache || !empty($cachePath)) {
             if (empty($cachePath)) {
                 $this->cachePath = $this->templatesPath.'cache/';
             } else {
