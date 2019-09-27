@@ -3,7 +3,7 @@ TemplateSeed
 
 <div align="center">
     <img src="https://img.shields.io/github/tag/syntaxseed/templateseed.svg" alt="GitHub tag (latest SemVer)">&nbsp;&nbsp;
-    <img src="https://img.shields.io/circleci/build/github/syntaxseed/templateseed" alt="Build">&nbsp;&nbsp;
+    <a href="https://circleci.com/gh/syntaxseed/templateseed"><img src="https://circleci.com/gh/syntaxseed/templateseed.svg?style=shield" alt="CircleCI Build"></a>&nbsp;&nbsp;
     <a href="https://syntaxseed.github.io/templateseed/"><img src="https://img.shields.io/badge/Read-Docs-blue" alt="Read Docs"></a>&nbsp;&nbsp;
     <img src="https://img.shields.io/badge/PHP-5.6+-brightgreen.svg" alt="PHP v5.6+">&nbsp;&nbsp;
     <img src="https://img.shields.io/github/license/syntaxseed/templateseed" alt="License: MIT"><br>
