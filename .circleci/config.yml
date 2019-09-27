@@ -1,6 +1,20 @@
 version: 2
+workflows:
+  main:
+    jobs:
+      - hold:
+          type: approval
+      - build:
+          requires:
+            - hold
+
 jobs:
   build:
+    branches:
+      only:
+        - master
+    hold: # <<< A job that will require manual approval in the CircleCI web application.
+      type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
     working_directory: /var/www/html
     docker:
       - image: php:7.3-apache
