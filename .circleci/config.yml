@@ -12,6 +12,7 @@ workflows:
           filters:
             branches:
               only: master
+
 jobs:
   build:
     working_directory: /var/www/html
