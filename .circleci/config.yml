@@ -43,7 +43,7 @@ jobs:
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
-
+            - vendor
       - run:
           name: Run Unit tests
           command: vendor/bin/phpunit
