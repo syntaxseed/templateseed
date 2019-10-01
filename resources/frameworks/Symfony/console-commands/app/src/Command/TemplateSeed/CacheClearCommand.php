@@ -6,10 +6,10 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Syntaxseed\Templateseed\TemplateSeed;
 
-class CachePathCommand extends Command
+class CacheClearCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'templateseed:cache-path';
+    protected static $defaultName = 'templateseed:cache-clear';
     private $cachePath;
 
     public function __construct(TemplateSeed $tpl)
@@ -22,11 +22,11 @@ class CachePathCommand extends Command
     {
         $this
         // the short description shown while running "php bin/console list"
-        ->setDescription('Display the TemplateSeed cache directory path.')
+        ->setDescription('Clear the TemplateSeed cache directory.')
 
         // the full command description shown when running the command with
         // the "--help" option
-        ->setHelp('This command will display the path to the TemplateSeed cache directory.')
+        ->setHelp('This command will empty all cached templates from the cache directory.')
     ;
     }
 
@@ -37,6 +37,13 @@ class CachePathCommand extends Command
             return;
         }
 
-        $output->writeln('<comment>TemplateSeed cache path: '.$this->cachePath.'</comment>');
+        if (!is_readable($this->cachePath) || !is_writeable($this->cachePath) || !is_dir($this->cachePath)) {
+            $output->writeln('<error>Cache directory not accessible. ('.$this->cachePath.')</error>');
+            return;
+        }
+
+        $files = array_filter((array) glob($this->cachePath."*"));
+        array_map('unlink', $files);
+        $output->writeln('<info>Cleared '.sizeof($files).' cached template(s).</info>');
     }
 }

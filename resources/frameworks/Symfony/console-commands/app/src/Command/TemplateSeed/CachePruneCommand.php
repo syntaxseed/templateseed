@@ -6,15 +6,17 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Syntaxseed\Templateseed\TemplateSeed;
 
-class ClearCacheCommand extends Command
+class CachePruneCommand extends Command
 {
     // the name of the command (the part after "bin/console")
-    protected static $defaultName = 'templateseed:clear-cache';
+    protected static $defaultName = 'templateseed:cache-prune';
     private $cachePath;
+    private $cacheExpiry;
 
     public function __construct(TemplateSeed $tpl)
     {
         $this->cachePath = $tpl->getCachePath();
+        $this->cacheExpiry = $tpl->getCacheExpiry();
         parent::__construct();
     }
 
@@ -22,11 +24,11 @@ class ClearCacheCommand extends Command
     {
         $this
         // the short description shown while running "php bin/console list"
-        ->setDescription('Clear the TemplateSeed cache directory.')
+        ->setDescription('Prune expired TemplateSeed cache files.')
 
         // the full command description shown when running the command with
         // the "--help" option
-        ->setHelp('This command will empty all cached templates from the cache directory.')
+        ->setHelp('This command will prune all cached templates that are older than the configured TTL from the cache directory.')
     ;
     }
 
@@ -43,7 +45,14 @@ class ClearCacheCommand extends Command
         }
 
         $files = array_filter((array) glob($this->cachePath."*"));
-        array_map('unlink', $files);
-        $output->writeln('<info>Cleared '.sizeof($files).' cached template(s).</info>');
+        $filesExpired = array_filter($files, function($cacheFile){
+            if (file_exists($cacheFile) && filemtime($cacheFile) > (time() - $this->cacheExpiry)) {
+                return(false);
+            } else {
+                return(true);
+            }
+        });
+        array_map('unlink', $filesExpired);
+        $output->writeln('<info>Pruned '.sizeof($filesExpired).' expired cached template(s).</info>');
     }
 }

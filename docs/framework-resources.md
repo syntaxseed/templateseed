@@ -6,5 +6,6 @@ A few helpful snippets and resources are provided for specific PHP frameworks. T
 
   - Console commands.
     - Clear cache dir.
-    - View cache path.
-  - Example service config to auto-wire TemplateSeed.
+    - View cache info.
+    - Prune expired cache files.
+  - Example service config and factory to auto-wire TemplateSeed.

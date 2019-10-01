@@ -6,9 +6,11 @@ Last Tested For: Symfony v 4.3.4.
 
 ## Usage:
 
-- Copy the contents of `src/config/services.php` into your own version of this file in Symfony.
-- Edit the path to where you store templates.
-- If you enable caching, uncomment and edit the line for the cachePath.
+- Copy the contents of `app/config/services.php` into your own version of this file in Symfony.
+- Copy `app/config/packages/templates.php` into your config directory.
+  - Edit configuration settings in above file.
+- If you enable caching, you must have a valid cache path.
+- Copy `app/src/Factories/TemplateFactory.php` into your own application's corresponding directory.
 - You may need to clear the Symfony cache.
 - You can now auto-inject the TemplateSeed instance into your controller methods (see example below).
 

@@ -21,6 +21,8 @@ $tpl->setCachePath();         // Defaults to <template path>/cache or pass in a 
 
 > **TIP:** Template parameters are ignored when using a cached version.
 
+> **TIP:** You might want to set up a cron to clear out the cache directory periodically.
+
 ## Overriding Caching
 
 To **prevent** caching if it was turned on in the constructor (or via `$tpl->enableCaching();`):

@@ -2,6 +2,7 @@
 
 TemplateSeed uses tagged versions and SemVer version numbering. View the [releases on GitHub](https://github.com/syntaxseed/templateseed/releases).
 
+* v1.2.6 - Add some helper getters to the TemplateSeed class. New Symfony example files.
 * v1.2.5 - Set template path in constructor even if cache toggle is off. (In case it is overridden later.) Improvements to docs.
 * v1.2.4 - Added full docs site.
 * v1.2.3 - Add Symfony example to wire into Service container.
