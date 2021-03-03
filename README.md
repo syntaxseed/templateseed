@@ -7,7 +7,7 @@ TemplateSeed
     <a href="https://syntaxseed.github.io/templateseed/"><img src="https://img.shields.io/badge/Read-Docs-blue" alt="Read Docs"></a>&nbsp;&nbsp;
     <img src="https://img.shields.io/badge/PHP-5.6+-brightgreen.svg" alt="PHP v5.6+">&nbsp;&nbsp;
     <img src="https://img.shields.io/github/license/syntaxseed/templateseed" alt="License: MIT"><br>
-    <a href="https://twitter.com/intent/follow?screen_name=syntaxseed"><img src="https://img.shields.io/twitter/follow/syntaxseed.svg?style=social&logo=twitter" alt="follow on Twitter"></a>
+    <a href="https://twitter.com/intent/follow?screen_name=syntaxseed"><img src="https://img.shields.io/twitter/follow/syntaxseed.svg?style=social&logo=twitter" alt="follow on Twitter"></a>&nbsp;&nbsp;<a href="https://syntaxseed.com/about/donate"><img src="https://img.shields.io/badge/Sponsor-Project-blue" alt="Sponsor Project" /></a>
 </div>
 
 A lightweight, simple PHP templating class with caching and natural PHP template syntax.
