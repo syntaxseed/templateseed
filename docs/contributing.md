@@ -4,7 +4,7 @@ I welcome anyone who wants to submit bug reports or pull requests for this proje
 
 ## Donations
 
-Users can also contribute a small financial donation if you appreciate TemplateSeed here: https://syntaxseed.com/about/donate/ ❤️
+Users can also contribute a small financial donation if you appreciate TemplateSeed here: https://github.com/syntaxseed#donatecontribute ❤️
 
 ## Contribution Ideas
 
