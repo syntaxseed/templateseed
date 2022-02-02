@@ -342,7 +342,7 @@ class TemplateSeed
                 }
             }
 
-            if (!is_readable($this->cachePath) || !is_writeable($this->cachePath) || !is_dir($this->cachePath)) {
+            if (!is_readable($this->cachePath) || !is_writable($this->cachePath) || !is_dir($this->cachePath)) {
                 $this->error("Template cache path ({$this->cachePath}) does not exist or is not accessible & writeable.");
             }
         } else {

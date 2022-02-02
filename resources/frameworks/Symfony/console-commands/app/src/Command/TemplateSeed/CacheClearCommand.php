@@ -37,13 +37,13 @@ class CacheClearCommand extends Command
             return;
         }
 
-        if (!is_readable($this->cachePath) || !is_writeable($this->cachePath) || !is_dir($this->cachePath)) {
+        if (!is_readable($this->cachePath) || !is_writable($this->cachePath) || !is_dir($this->cachePath)) {
             $output->writeln('<error>Cache directory not accessible. ('.$this->cachePath.')</error>');
             return;
         }
 
         $files = array_filter((array) glob($this->cachePath."*"));
         array_map('unlink', $files);
-        $output->writeln('<info>Cleared '.sizeof($files).' cached template(s).</info>');
+        $output->writeln('<info>Cleared '.count($files).' cached template(s).</info>');
     }
 }

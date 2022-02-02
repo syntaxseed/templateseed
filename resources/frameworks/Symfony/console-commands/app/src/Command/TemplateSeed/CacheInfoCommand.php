@@ -47,15 +47,15 @@ class CacheInfoCommand extends Command
         }
 
         $files = array_filter((array) glob($this->cachePath."*"));
-        $filesExpired = array_filter($files, function($cacheFile){
+        $filesExpired = array_filter($files, function ($cacheFile) {
             if (file_exists($cacheFile) && filemtime($cacheFile) > (time() - $this->cacheExpiry)) {
                 return(false);
             } else {
                 return(true);
             }
         });
-        $numCache = sizeof($files);
-        $numExpired = sizeof($filesExpired);
+        $numCache = count($files);
+        $numExpired = count($filesExpired);
         $numValid = $numCache - $numExpired;
         $output->writeln("<fg=blue;options=bold>TemplateSeed cache counts:</> {$numValid} valid, {$numExpired} expired, {$numCache} total");
 

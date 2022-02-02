@@ -28,7 +28,7 @@ class TemplateFactory
             new EmptyVersionStrategy(),
             new RequestStackContext($request_stack)
         );
-        $assetCallable = function($assetPath) use ($assetsManager){
+        $assetCallable = function ($assetPath) use ($assetsManager) {
             return $assetsManager->getUrl($assetPath);
         };
 

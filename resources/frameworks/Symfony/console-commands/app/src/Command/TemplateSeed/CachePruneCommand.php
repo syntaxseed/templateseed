@@ -39,13 +39,13 @@ class CachePruneCommand extends Command
             return;
         }
 
-        if (!is_readable($this->cachePath) || !is_writeable($this->cachePath) || !is_dir($this->cachePath)) {
+        if (!is_readable($this->cachePath) || !is_writable($this->cachePath) || !is_dir($this->cachePath)) {
             $output->writeln('<error>Cache directory not accessible. ('.$this->cachePath.')</error>');
             return;
         }
 
         $files = array_filter((array) glob($this->cachePath."*"));
-        $filesExpired = array_filter($files, function($cacheFile){
+        $filesExpired = array_filter($files, function ($cacheFile) {
             if (file_exists($cacheFile) && filemtime($cacheFile) > (time() - $this->cacheExpiry)) {
                 return(false);
             } else {
@@ -53,6 +53,6 @@ class CachePruneCommand extends Command
             }
         });
         array_map('unlink', $filesExpired);
-        $output->writeln('<info>Pruned '.sizeof($filesExpired).' expired cached template(s).</info>');
+        $output->writeln('<info>Pruned '.count($filesExpired).' expired cached template(s).</info>');
     }
 }
