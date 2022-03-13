@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Command\TemplateSeed;
 
 use Symfony\Component\Console\Command\Command;

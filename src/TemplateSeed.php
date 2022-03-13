@@ -1,4 +1,5 @@
 <?php
+
 namespace Syntaxseed\Templateseed;
 
 /**
@@ -37,7 +38,7 @@ class TemplateSeed
     */
     public function __construct($templatesPath, $cacheEnabled=false, $cachePath=null)
     {
-        $this->params = new \StdClass;
+        $this->params = new \StdClass();
         if (is_null(self::$staticParams)) {
             self::init();
         }
@@ -55,7 +56,7 @@ class TemplateSeed
     */
     public static function init()
     {
-        self::$staticParams = new \StdClass;
+        self::$staticParams = new \StdClass();
     }
 
     /**
@@ -130,7 +131,7 @@ class TemplateSeed
      */
     private function clearParams()
     {
-        $this->params = new \StdClass;
+        $this->params = new \StdClass();
     }
 
     /**

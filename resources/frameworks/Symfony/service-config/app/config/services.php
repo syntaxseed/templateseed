@@ -1,4 +1,5 @@
 <?php
+
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
 use App\Factories\TemplateFactory;

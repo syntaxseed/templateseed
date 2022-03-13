@@ -23,4 +23,4 @@ Features
 Get Started
 --------
 
-**[View The Quick Start Guide!](quickstart.md)**
+**[View The Quick Start Guide!](quick-start.md)**

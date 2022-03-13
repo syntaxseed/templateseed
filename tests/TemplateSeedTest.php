@@ -4,7 +4,6 @@
 */
 class TemplateSeedTest extends PHPUnit\Framework\TestCase
 {
-
     /**
     * Basic test of class instantiation.
     */
