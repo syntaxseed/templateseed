@@ -50,11 +50,20 @@ You can override the cache setting within a template itself, because a local ins
 
 The `$_view()` template helper can also receive a `true` to prevent caching.
 
-> **TIP:** Preventing caching is ***recommended for Masterpages*** or templates which contain other templates.
+> **TIP:** Preventing caching is ***recommended for Masterpages*** or templates which contain other templates. Alternatively you can set a manual cache key name (see below) to prevent all pages from being cashed as if they are the masterpage.
 
 ## Overriding Cache Filename
 
-Manually set the cached copy file name (defaults to md5 of template name):
+The cached copy file name (aka the cache key) defaults to the md5 of the template name.
+
+Manually set the cached copy file name:
 ```php
 $tpl->setCacheKey('headercached');
 ```
+
+The cache file name will be cleaned to contain only alphanumeric characters. As of version 1.4.0, if you'd like to use a filename with special characters or even a full path (for example to generate a static site), then pass in `false` as a second parameter:
+```php
+$tpl->setCacheKey('docs/index.html', false);
+```
+
+If the cache key contains a path, TemplateSeed will create it if it doesn't already exist.

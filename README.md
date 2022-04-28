@@ -16,7 +16,7 @@ A lightweight, simple PHP templating class with caching and natural PHP template
 
 Licence: MIT.
 
-Version: 1.3.1
+Version: 1.4.0
 
 Author: Sherri Wheeler (Twitter [@SyntaxSeed](https://twitter.com/SyntaxSeed)) https://syntaxseed.com
 
@@ -33,6 +33,7 @@ Features
 * Supports masterpages (sub-templates).
 * Easy to customize.
 * Unit-Testing with PHPUnit.
+* Can be used for static site generation.
 
 Get Started & Documentation
 --------

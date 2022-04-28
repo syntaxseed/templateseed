@@ -35,4 +35,4 @@ return $tpl->render(
     );
 ```
 
-> **TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true for `$preventCache` after the params array.
+> **TIP:** When using caching with masterpages (or any kind of template inside a template), you must prevent the master page from being cached by passing true for `$preventCache` after the params array. Alternatively you can set a manual cache key name to prevent all pages from being cashed as if they are the masterpage.

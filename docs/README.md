@@ -19,6 +19,7 @@ Features
 * Supports masterpages (sub-templates).
 * Easy to customize.
 * Unit-Testing with PHPUnit.
+* Can be used for static site generation.
 
 Get Started
 --------

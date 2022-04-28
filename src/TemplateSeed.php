@@ -7,8 +7,8 @@ namespace Syntaxseed\Templateseed;
   * TemplateSeed - Simple PHP Templating class.
   * -------------------------------------------------------------
   * @author Sherri Wheeler
-  * @version  1.2.6
-  * @copyright Copyright (c) 2019, Sherri Wheeler - syntaxseed.com
+  * @version  1.4.0
+  * @copyright Copyright (c) 2022, Sherri Wheeler - syntaxseed.com
   * @license MIT
   *
   * You might want a cron to clear out the cache directory periodically if you use caching.
@@ -31,8 +31,8 @@ class TemplateSeed
     * Initialize the template object.
     *
     * @param string $templatesPath (required) Root path to the templates directory. Must be readable.
-    * @param string $cacheEnabled (optional) Whether to use caching. Defaults to false.
-    * @param string $cachePath (required) Root path to the cache directory. Must be readable & writeable.
+    * @param bool $cacheEnabled (optional) Whether to use caching. Defaults to false.
+    * @param string|null $cachePath (required) Root path to the cache directory. Must be readable & writeable.
     *
     * @return void
     */
@@ -60,20 +60,22 @@ class TemplateSeed
     }
 
     /**
-    * Set the static parameters global to all template objects.
-    *
-    * @return void
-    */
+     * Set the parameters global to all template objects.
+     *
+     * @param array $params Array of names and their values.
+     * @return void
+     */
     public function setGlobalParams($params = [])
     {
         self::globalParams($params);
     }
 
     /**
-    * Static method to set parameters global to all template objects.
-    *
-    * @return void
-    */
+     * Static method to set parameters global to all template objects.
+     *
+     * @param array $params Array of names and their values.
+     * @return void
+     */
     public static function globalParams($params = [])
     {
         self::$staticParams = (object) $params;
@@ -85,6 +87,7 @@ class TemplateSeed
      *
      * @param string $tpl
      * @param array $params
+     * @param bool $preventCache
      * @return string
      */
     public function render($tpl, $params = [], $preventCache = false)
@@ -98,7 +101,7 @@ class TemplateSeed
      * Set the name of the template to be used. Should not include file extension.
      *
      * @param string $tpl
-     * @param boolean $clearParams
+     * @param bool $clearParams
      * @return void
      */
     public function setTemplate($tpl, $clearParams=true)
@@ -137,6 +140,7 @@ class TemplateSeed
     /**
      * Write the generated (or cached) template contents to standard output (browser).
      *
+     * @param bool $preventCache
      * @return void
      */
     public function output($preventCache = false)
@@ -148,6 +152,7 @@ class TemplateSeed
     /**
      * Return the generated (or cached) template contents.
      *
+     * @param bool $preventCache
      * @return string
      */
     public function retrieve($preventCache = false)
@@ -161,6 +166,7 @@ class TemplateSeed
      * If we are using caching and don't have a cached version, cache it.
      * If we have a cached version that is not expired use that.
      *
+     * @param bool $preventCache
      * @return void
      */
     private function generateOutput($preventCache = false)
@@ -277,13 +283,18 @@ class TemplateSeed
 
     /**
      * Manually set a name for the cached file instead of using the md5 of the template name.
+     * If you send in a path or traditional file name, set $cleanName to false.
      *
      * @param string $key
+     * @param bool $cleanName Whether to ensure only alphanumeric cache key/name.
      * @return void
      */
-    public function setCacheKey($key)
+    public function setCacheKey($key, $cleanName = true)
     {
-        $key = preg_replace('/[^\da-z]/i', '', $key);
+        if ($cleanName) {
+            $key = preg_replace('/[^\da-z]/i', '', $key);
+        }
+
         if (!empty($key)) {
             $this->cacheKey = $key;
         }
@@ -375,7 +386,29 @@ class TemplateSeed
     {
         if ($this->cache) {
             $cacheFile = $this->getCacheFile();
+            $this->setupCachePath($cacheFile);
             file_put_contents($cacheFile, $this->templateOutput);
+        }
+    }
+
+    /**
+     * If the cache key/name contains a slash, make sure it's a directory which exists.
+     * If not, create it.
+     *
+     * @param string $cacheFile The key/name/path to save the cached version at.
+     * @return void
+     */
+    protected function setupCachePath($cacheFile)
+    {
+        if (!str_contains($cacheFile, '/') || is_null($this->cachePath)) {
+            return;
+        }
+
+        $dir = dirname($cacheFile);
+        $permsToUse = fileperms($this->cachePath);
+
+        if (!is_dir($dir)) {
+            mkdir($dir, $permsToUse, true);
         }
     }
 
