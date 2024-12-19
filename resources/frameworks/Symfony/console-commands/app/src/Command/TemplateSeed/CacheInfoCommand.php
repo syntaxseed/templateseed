@@ -23,7 +23,7 @@ class CacheInfoCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             // the short description shown while running "php bin/console list"
@@ -35,7 +35,7 @@ class CacheInfoCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $output->writeln("");
         $output->writeln("<fg=blue;options=bold>TemplateSeed cache enabled:</> ".$this->cacheSetting);

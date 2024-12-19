@@ -54,7 +54,7 @@ class TemplateSeed
     *
     * @return void
     */
-    public static function init()
+    public static function init(): void
     {
         self::$staticParams = new \StdClass();
     }
@@ -65,7 +65,7 @@ class TemplateSeed
      * @param array $params Array of names and their values.
      * @return void
      */
-    public function setGlobalParams($params = [])
+    public function setGlobalParams($params = []): void
     {
         self::globalParams($params);
     }
@@ -76,7 +76,7 @@ class TemplateSeed
      * @param array $params Array of names and their values.
      * @return void
      */
-    public static function globalParams($params = [])
+    public static function globalParams($params = []): void
     {
         self::$staticParams = (object) $params;
     }
@@ -104,7 +104,7 @@ class TemplateSeed
      * @param bool $clearParams
      * @return void
      */
-    public function setTemplate($tpl, $clearParams = true)
+    public function setTemplate($tpl, $clearParams = true): void
     {
         if ($clearParams) {
             $this->clearParams();
@@ -118,7 +118,7 @@ class TemplateSeed
      * @param string $templatesPath
      * @return void
      */
-    private function setTemplatesPath($templatesPath)
+    private function setTemplatesPath($templatesPath): void
     {
         $this->templatesPath = $templatesPath;
         if (!is_readable($this->templatesPath)) {
@@ -132,7 +132,7 @@ class TemplateSeed
      *
      * @return void
      */
-    private function clearParams()
+    private function clearParams(): void
     {
         $this->params = new \StdClass();
     }
@@ -143,7 +143,7 @@ class TemplateSeed
      * @param bool $preventCache
      * @return void
      */
-    public function output($preventCache = false)
+    public function output($preventCache = false): void
     {
         $this->generateOutput($preventCache);
         echo($this->templateOutput);
@@ -169,7 +169,7 @@ class TemplateSeed
      * @param bool $preventCache
      * @return void
      */
-    private function generateOutput($preventCache = false)
+    private function generateOutput($preventCache = false): void
     {
         if (!file_exists($this->templateFile)) {
             $this->error("Template File ({$this->templateFile}) not found.");
@@ -206,21 +206,19 @@ class TemplateSeed
      *
      * @return void
      */
-    private function protectedInclude()
+    private function protectedInclude(): void
     {
         $_tpl = $this;
 
         // View Helpers:
         // * Include another view into the current view:
-        $_view = function ($tplName, $params = [], $preventCache = false) use ($_tpl) {
+        $_view = function ($tplName, $params = [], $preventCache = false) use ($_tpl): void {
             $tplCopy = clone $_tpl; // Don't want to mess with the calling template's settings.
             echo($tplCopy->render($tplName, $params, $preventCache));
             unset($tplCopy);
         };
         // * Encode html for a 'Safe String'.
-        $_ss = function ($str) {
-            return htmlspecialchars($str, ENT_QUOTES);
-        };
+        $_ss = fn ($str) => htmlspecialchars($str, ENT_QUOTES);
 
         // Extract template parameters into this local namespace.
         $allParams = (object) array_merge((array)self::$staticParams, (array)$this->params);
@@ -237,7 +235,7 @@ class TemplateSeed
      * @param string $message
      * @return void
      */
-    private function error($message = '')
+    private function error($message = ''): void
     {
         if (empty($message)) {
             $message = 'A fatal error occured. Unable to continue.';
@@ -254,12 +252,12 @@ class TemplateSeed
      *
      * @return void
      */
-    public function enableCaching()
+    public function enableCaching(): void
     {
         $this->cache = true;
     }
 
-    public function disableCaching()
+    public function disableCaching(): void
     {
         $this->cache = false;
     }
@@ -289,7 +287,7 @@ class TemplateSeed
      * @param bool $cleanName Whether to ensure only alphanumeric cache key/name.
      * @return void
      */
-    public function setCacheKey($key, $cleanName = true)
+    public function setCacheKey($key, $cleanName = true): void
     {
         if ($cleanName) {
             $key = preg_replace('/[^\da-z]/i', '', $key);
@@ -306,7 +304,7 @@ class TemplateSeed
      * @param integer $ttl
      * @return void
      */
-    public function setCacheExpiry($ttl = 3600)
+    public function setCacheExpiry($ttl = 3600): void
     {
         $this->cachePeriod = abs(intval($ttl));
     }
@@ -339,7 +337,7 @@ class TemplateSeed
      * @param string $cachePath
      * @return void
      */
-    public function setCachePath($cachePath = '')
+    public function setCachePath($cachePath = ''): void
     {
         if ($this->cache || !empty($cachePath)) {
             if (empty($cachePath)) {
@@ -382,7 +380,7 @@ class TemplateSeed
      *
      * @return void
      */
-    protected function setCache()
+    protected function setCache(): void
     {
         if ($this->cache) {
             $cacheFile = $this->getCacheFile();
@@ -398,7 +396,7 @@ class TemplateSeed
      * @param string $cacheFile The key/name/path to save the cached version at.
      * @return void
      */
-    protected function setupCachePath($cacheFile)
+    protected function setupCachePath($cacheFile): void
     {
         if (!str_contains($cacheFile, '/') || is_null($this->cachePath)) {
             return;

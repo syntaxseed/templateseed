@@ -2,6 +2,7 @@
 
 TemplateSeed uses tagged versions and SemVer version numbering. View the [releases on GitHub](https://github.com/syntaxseed/templateseed/releases).
 
+* v1.4.0 - Tested and fixed for PHP 8.2 & 8.3.
 * v1.3.1 - Tested and fixed for PHP 8.1.
 * v1.3.0 - Tested and fixed for PHP 8.0. Dropped PHP 5.x support.
 * v1.2.6 - Add some helper getters to the TemplateSeed class. New Symfony example files.

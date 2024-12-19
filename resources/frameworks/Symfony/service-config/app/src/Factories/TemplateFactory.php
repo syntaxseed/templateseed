@@ -29,9 +29,7 @@ class TemplateFactory
             new EmptyVersionStrategy(),
             new RequestStackContext($request_stack)
         );
-        $assetCallable = function ($assetPath) use ($assetsManager) {
-            return $assetsManager->getUrl($assetPath);
-        };
+        $assetCallable = fn ($assetPath) => $assetsManager->getUrl($assetPath);
 
         // Pass some parameters as accessible in ALL templates.
         $templateSeed->setGlobalParams([

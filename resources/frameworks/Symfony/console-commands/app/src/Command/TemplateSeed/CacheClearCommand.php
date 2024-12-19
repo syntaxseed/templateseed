@@ -19,7 +19,7 @@ class CacheClearCommand extends Command
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
         // the short description shown while running "php bin/console list"
@@ -31,7 +31,7 @@ class CacheClearCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         if (is_null($this->cachePath)) {
             $output->writeln('<error>Cache directory not set.</error>');

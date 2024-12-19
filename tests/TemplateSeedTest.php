@@ -8,7 +8,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Basic test of class instantiation.
     */
-    public function testIsThereAnySyntaxErrors()
+    public function testIsThereAnySyntaxErrors(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $this->assertTrue(is_object($tpl));
@@ -18,7 +18,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check if retrieving a template works.
     */
-    public function testTemplateRetrieval()
+    public function testTemplateRetrieval(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $tpl->setTemplate('greeting');
@@ -31,7 +31,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check if retrieving a template with a global parameter works.
     */
-    public function testTemplateGlobalRetrieval()
+    public function testTemplateGlobalRetrieval(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $tpl->setTemplate('greetingglobal');
@@ -45,7 +45,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check one line render method.
     */
-    public function testTemplateRender()
+    public function testTemplateRender(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $output = $tpl->render('greeting', ['name' => 'Keegan']);
@@ -56,7 +56,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check the Safe String helper.
     */
-    public function testTemplateHelperSS()
+    public function testTemplateHelperSS(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $output = $tpl->render('helpers');
@@ -68,7 +68,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check the View helper.
     */
-    public function testTemplateHelperView()
+    public function testTemplateHelperView(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $output = $tpl->render('helpers');
@@ -80,7 +80,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     /**
     * Check the $_tpl helper var is included.
     */
-    public function testTemplateHelperTpl()
+    public function testTemplateHelperTpl(): void
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $output = $tpl->render('helpers');
