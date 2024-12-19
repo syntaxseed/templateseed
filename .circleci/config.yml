@@ -17,7 +17,7 @@ jobs:
   build:
     working_directory: /var/www/html
     docker:
-      - image: oberd/php-8.0-apache
+      - image: oberd/php-8.2-apache
         environment:
           APP_ENV: test
     steps:
