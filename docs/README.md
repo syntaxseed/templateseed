@@ -4,7 +4,7 @@ This is a lightweight, simple PHP templating class with built-in caching and nat
 
 Licence: MIT
 
-Author: Sherri Wheeler (Twitter [@SyntaxSeed](https://twitter.com/SyntaxSeed)) https://syntaxseed.com
+Author: Sherri Wheeler (Mastodon: [@SyntaxSeed](https://phpc.social/@syntaxseed)) https://syntaxseed.com
 
 Features
 --------

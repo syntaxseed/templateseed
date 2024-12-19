@@ -10,7 +10,10 @@ TemplateSeed
     <img src="https://img.shields.io/badge/PHP-8.2+-brightgreen.svg" alt="PHP v8.2+">&nbsp;&nbsp;
     <img src="https://img.shields.io/badge/PHP-8.3+-brightgreen.svg" alt="PHP v8.3+">&nbsp;&nbsp;
     <img src="https://img.shields.io/github/license/syntaxseed/templateseed" alt="License: MIT"><br>
-    <a href="https://twitter.com/intent/follow?screen_name=syntaxseed"><img src="https://img.shields.io/twitter/follow/syntaxseed.svg?style=social&logo=twitter" alt="follow on Twitter"></a>&nbsp;&nbsp;<a href="https://github.com/syntaxseed#donatecontribute"><img src="https://img.shields.io/badge/Sponsor-Project-blue" alt="Sponsor Project" /></a>
+    <a href="https://phpc.social/@syntaxseed">
+        <img src="https://img.shields.io/mastodon/follow/11361?domain=https%3A%2F%2Fphpc.social"
+            alt="follow on Mastodon"></a>&nbsp;&nbsp;
+    <a href="https://github.com/syntaxseed#donatecontribute"><img src="https://img.shields.io/badge/Sponsor-Project-blue" alt="Sponsor Project" /></a>
 </div>
 
 A lightweight, simple PHP templating class with caching and natural PHP template syntax.
@@ -19,7 +22,7 @@ Licence: MIT.
 
 Version: 1.4.0
 
-Author: Sherri Wheeler (Twitter [@SyntaxSeed](https://twitter.com/SyntaxSeed)) https://syntaxseed.com
+Author: Sherri Wheeler (Mastodon: [@SyntaxSeed](https://phpc.social/@syntaxseed)) https://syntaxseed.com
 
 Features
 --------
