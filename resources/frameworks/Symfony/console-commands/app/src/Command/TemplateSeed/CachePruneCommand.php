@@ -30,7 +30,7 @@ class CachePruneCommand extends Command
         // the full command description shown when running the command with
         // the "--help" option
         ->setHelp('This command will prune all cached templates that are older than the configured TTL from the cache directory.')
-    ;
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

@@ -32,7 +32,7 @@ class CacheInfoCommand extends Command
             // the full command description shown when running the command with
             // the "--help" option
             ->setHelp('This command will display information about the TemplateSeed cache.')
-    ;
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

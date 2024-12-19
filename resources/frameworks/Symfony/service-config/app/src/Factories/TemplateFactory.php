@@ -35,7 +35,7 @@ class TemplateFactory
 
         // Pass some parameters as accessible in ALL templates.
         $templateSeed->setGlobalParams([
-            '_asset'=>$assetCallable
+            '_asset' => $assetCallable
         ]);
 
         return $templateSeed;

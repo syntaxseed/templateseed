@@ -1,4 +1,5 @@
 <?php
+
 /**
 *  Basic testing for TemplateSeed.
 */
@@ -34,7 +35,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
         $tpl->setTemplate('greetingglobal');
-        $tpl->setGlobalParams(['first'=>'Keegan']);
+        $tpl->setGlobalParams(['first' => 'Keegan']);
         $tpl->params->last = "Smith";
         $output = $tpl->retrieve();
         $this->assertEquals($output, "<h1>Well hello there, Keegan Smith!</h1>\n");
@@ -47,7 +48,7 @@ class TemplateSeedTest extends PHPUnit\Framework\TestCase
     public function testTemplateRender()
     {
         $tpl = new Syntaxseed\Templateseed\TemplateSeed(__DIR__."/views/");
-        $output = $tpl->render('greeting', ['name'=>'Keegan']);
+        $output = $tpl->render('greeting', ['name' => 'Keegan']);
         $this->assertEquals($output, "<h1>Well hello there, Keegan!</h1>\n");
         unset($tpl);
     }

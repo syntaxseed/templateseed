@@ -1,4 +1,5 @@
 <?php
+
 /* TemplateSeed specific configuration.
  * Not related to Symfony framework.
  * To reference a config value from any other configuration file,

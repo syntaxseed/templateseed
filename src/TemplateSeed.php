@@ -36,7 +36,7 @@ class TemplateSeed
     *
     * @return void
     */
-    public function __construct($templatesPath, $cacheEnabled=false, $cachePath=null)
+    public function __construct($templatesPath, $cacheEnabled = false, $cachePath = null)
     {
         $this->params = new \StdClass();
         if (is_null(self::$staticParams)) {
@@ -104,7 +104,7 @@ class TemplateSeed
      * @param bool $clearParams
      * @return void
      */
-    public function setTemplate($tpl, $clearParams=true)
+    public function setTemplate($tpl, $clearParams = true)
     {
         if ($clearParams) {
             $this->clearParams();
@@ -339,7 +339,7 @@ class TemplateSeed
      * @param string $cachePath
      * @return void
      */
-    public function setCachePath($cachePath='')
+    public function setCachePath($cachePath = '')
     {
         if ($this->cache || !empty($cachePath)) {
             if (empty($cachePath)) {
@@ -370,7 +370,7 @@ class TemplateSeed
     public function cacheExists()
     {
         $cacheFile = $this->getCacheFile();
-        if (file_exists($cacheFile) && filemtime($cacheFile) > (time()-$this->cachePeriod)) {
+        if (file_exists($cacheFile) && filemtime($cacheFile) > (time() - $this->cachePeriod)) {
             return(true);
         } else {
             return(false);

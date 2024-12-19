@@ -28,7 +28,7 @@ class CacheClearCommand extends Command
         // the full command description shown when running the command with
         // the "--help" option
         ->setHelp('This command will empty all cached templates from the cache directory.')
-    ;
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
